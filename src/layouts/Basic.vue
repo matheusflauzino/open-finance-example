@@ -13,7 +13,7 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="#"
+            <b-nav-item to="/cart"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
               <span class="badge badge-danger" v-if="amountCart">{{
                 amountCart

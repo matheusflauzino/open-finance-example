@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 
 //pages
 import Home from "../views/Home";
+import Cart from "../views/Cart";
 
 const router = new VueRouter({
     mode: "history",
@@ -14,6 +15,11 @@ const router = new VueRouter({
             path: "/",
             name: "HomePage",
             component: Home
+        },
+        {
+            path: "/cart",
+            name: "CartPage",
+            component: Cart
         },
     ]
 });

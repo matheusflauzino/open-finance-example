@@ -2,6 +2,11 @@
   <layout-basic>
     <div slot="content">
       <div class="row">
+        <div class="col-md-12 mx-3 mb-4">
+          <h1>Produtos</h1>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-3" v-for="item in products" :key="item.id">
           <div class="col mb-5">
             <div class="card h-100">
