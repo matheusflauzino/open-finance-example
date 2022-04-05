@@ -15,7 +15,9 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
-              <span class="badge badge-danger">{{ amountCart }}</span>
+              <span class="badge badge-danger" v-if="amountCart">{{
+                amountCart
+              }}</span>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
