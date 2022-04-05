@@ -1,5 +1,5 @@
 const getters = {
-    amoutCart: state => {
+    amountCart: state => {
         return state.cart.length;
     }
 

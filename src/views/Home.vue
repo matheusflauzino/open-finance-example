@@ -63,6 +63,7 @@
 <script>
 import LayoutBasic from "../layouts/Basic.vue";
 import productService from "../services/products";
+import { mapActions } from "vuex";
 
 export default {
   name: "HomePage",
@@ -77,9 +78,12 @@ export default {
   },
 
   methods: {
+    ...mapActions(["addItemToCart"]),
+
     add(item) {
-      //metodo que vai adicionar ao storage do carrinho
-      alert(item.name);
+      if (confirm("Deseja realmente adicionar o item ao carrinho?")) {
+        this.addItemToCart(item);
+      }
     },
   },
 

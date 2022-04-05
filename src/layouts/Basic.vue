@@ -14,9 +14,9 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#"
-              ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              Carrinho</b-nav-item
-            >
+              ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
+              <span class="badge badge-danger">{{ amountCart }}</span>
+            </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "LayoutBasic",
   data() {
@@ -43,7 +45,9 @@ export default {
       info: {},
     };
   },
-
+  computed: {
+    ...mapGetters(["amountCart"]),
+  },
   methods: {},
 
   async mounted() {},
