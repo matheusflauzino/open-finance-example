@@ -23,7 +23,7 @@
               <div class="card-body p-4">
                 <div class="text-center">
                   <!-- Product name-->
-                  <h5 class="fw-bolder">Special Item</h5>
+                  <h5 class="fw-bolder">{{ item.name }}</h5>
                   <!-- Product reviews-->
                   <div
                     class="
