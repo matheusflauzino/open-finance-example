@@ -32,7 +32,6 @@
         </div>
       </div>
     </div>
-
     <footer class="footer navbar-fixed-bottom text-center">Copy &copy;</footer>
   </div>
 </template>
@@ -59,12 +58,5 @@ export default {
 <style>
 #logo {
   width: 150px;
-}
-
-footer {
-  position: fixed;
-  height: 100px;
-  bottom: 0;
-  width: 100%;
 }
 </style>
