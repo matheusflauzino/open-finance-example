@@ -55,7 +55,9 @@
             <div class="float-sm-right">R$ {{ total }}</div>
           </div>
 
-          <b-button block variant="primary">Processar Pagamento</b-button>
+          <b-button href="/checkout" block variant="primary"
+            >Processar Pagamento</b-button
+          >
 
           <div class="mt-2 text-center">
             <b-link to="/" class="text-muted">
