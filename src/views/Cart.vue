@@ -52,11 +52,14 @@
             style="background-color: rgba(0, 0, 0, 0.03)"
           >
             Total:
-            <div class="float-sm-right">R$ {{ total }}</div>
+            <div class="float-sm-right">R$ {{ saleTotal }}</div>
           </div>
 
-          <b-button href="/checkout" block variant="primary"
-            >Processar Pagamento</b-button
+          <!-- o link devia estar no botão ao invés do texto -->
+          <b-button block variant="primary"
+            ><b-link to="/checkout" class="text-white"
+              >Processar Pagamento</b-link
+            ></b-button
           >
 
           <div class="mt-2 text-center">
@@ -90,14 +93,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["itemsCart"]),
-
-    total() {
-      return this.itemsCart.reduce(
-        (accumulator, item) => accumulator + item.value,
-        0
-      );
-    },
+    ...mapGetters(["itemsCart", "saleTotal"]),
   },
 
   methods: {

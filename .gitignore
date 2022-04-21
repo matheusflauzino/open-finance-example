@@ -1,7 +1,9 @@
 .DS_Store
 node_modules
 /dist
-
+config/config.json
+config/public.pem
+config/private.pem
 
 # local env files
 .env.local

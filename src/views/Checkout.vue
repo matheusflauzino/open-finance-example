@@ -1,48 +1,55 @@
 <template>
   <layout-basic>
     <div slot="content">
+      <b-modal id="myModal">
+        <ul
+          v-for="item in availableInstitutions"
+          class="list-group"
+          :key="item.id"
+        >
+          <li class="list-group-item">
+            <button
+              class="btn btn-sm"
+              href="#"
+              v-b-modal="'myModal'"
+              @click="selectBank(item)"
+            >
+              {{ item.name }}
+            </button>
+          </li>
+        </ul>
+        <template #modal-footer="{}"> </template>
+      </b-modal>
       <div class="row">
         <div class="col-md-12 mx-3 mb-4">
           <h1>Checkout</h1>
+          <div class="card my-3">
+            <div v-if="!openBankingFlow" class="col-md-6 my-3">
+              <h4>Escolher meio de pagamento</h4>
+              <b-button block variant="primary">Cartão de crédito</b-button>
+              <b-button block variant="primary">Boleto bancário</b-button>
+              <b-button @click="start()" block variant="primary"
+                >Pix via Open Banking</b-button
+              >
+            </div>
+            <div v-if="openBankingFlow" class="col-md-6 my-3">
+              <h4>Escolher instituição do pagamento</h4>
+              <b-button v-b-modal="'myModal'" block variant="primary"
+                >Listar instituições</b-button
+              >
+              <b-button block @click="back()">Voltar</b-button>
+            </div>
+          </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Produto</th>
-              <th scope="col"></th>
-              <th scope="col" class="text-center">Qtd</th>
-              <th scope="col" class="text-right">Valor</th>
-              <th scope="col" class="text-right">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in itemsCart" :key="item.id">
-              <td class="align-middle">{{ item.name }}</td>
-              <td class="align-middle">
-                <img :src="item.image" width="120em" class="img-thumbnail" />
-              </td>
-              <td class="align-middle text-center">
-                {{ item.amount }}
-              </td>
-              <td class="align-middle text-right">
-                {{ item.value.toFixed(2) }}
-              </td>
-              <td class="align-middle text-right">
-                {{ item.amount * item.value.toFixed(2) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
-      <div class="row"></div>
     </div>
   </layout-basic>
 </template>
 
 <script>
 import LayoutBasic from "../layouts/Basic.vue";
-import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import financialInstitutionsService from "../services/financial-institutions";
 
 export default {
   name: "CheckoutPage",
@@ -52,18 +59,28 @@ export default {
 
   data() {
     return {
-      products: [],
+      openBankingFlow: false,
+      availableInstitutions: [],
     };
   },
 
   computed: {
-    ...mapGetters(["itemsCart"]),
+    ...mapGetters(["itemsCart", "amountCart"]),
   },
 
   methods: {
-    ...mapActions(["addItemToCart"]),
+    start() {
+      this.openBankingFlow = true;
+    },
+    back() {
+      this.openBankingFlow = false;
+    },
   },
 
-  mounted() {},
+  async mounted() {
+    this.availableInstitutions = await financialInstitutionsService.all();
+  },
 };
 </script>
+
+<style></style>
